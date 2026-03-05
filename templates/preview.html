@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Preview</title>
+</head>
+<body>
+
+<h2>QRコードプレビュー</h2>
+
+<!-- QRを直接表示 -->
+<img src="data:image/png;base64,{{ text | tojson | safe }}">
+
+<!-- ↑これは後で修正するので今は下の方法に変更 -->
+
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data={{ text }}">
+
+<form action="/download" method="post">
+    <input type="hidden" name="text" value="{{ text }}">
+    <button type="submit">PDFダウンロード</button>
+</form>
+
+<br>
+<a href="/">戻る</a>
+
+</body>
+</html>
